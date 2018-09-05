@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .box{
+        width: 200px;
+        height: 200px;
+        border: 1px solid #ff6700;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+</style>
+<body>
+<div class="box"></div>
+</body>
+</html>
+<script>
+    let box=document.querySelector(".box");
+    box.onmousedown=function (event) {
+        event=event||window.event;
+        x0=event.screenX;
+        y0=event.screenY;
+        x2=box.offsetLeft;
+        y2=box.offsetTop;
+        box.onmousemove=function (event) {
+            event=event||window.event;
+            x1=event.screenX;
+            y1=event.screenY;
+            x=x1-x0+x2;
+            y=y1-y0+y2;
+            box.style=`top:${y}px;left:${x}px`;
+        };
+        box.onmouseup=function () {
+            box.onmousemove="";
+            box.onmouseup="";
+        };
+    }
+
+
+</script>
